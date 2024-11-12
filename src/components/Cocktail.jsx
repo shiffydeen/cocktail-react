@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const Cocktail = ({image, name, id, info, glass}) => {
+
     return ( 
         <>
             <article className="cocktail">
@@ -21,6 +22,7 @@ const Cocktail = ({image, name, id, info, glass}) => {
             </article>
         </>
      );
+     
 }
  
 export default Cocktail;
