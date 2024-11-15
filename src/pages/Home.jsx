@@ -1,15 +1,15 @@
 import React from 'react';
-import CocktailList from '../components/CocktailList'
-import SearchForm from '../components/SearchForm'
+import SearchForm from '../components/SearchForm';
+import CocktailList from '../components/CocktailList';
 
 
 const Home = () => {
     return ( 
         <>
-        <main>
-            <SearchForm />
-            <CocktailList />
-        </main>
+            <main>
+                <SearchForm />
+                <CocktailList />
+            </main>
         </>
      );
 }
