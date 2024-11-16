@@ -15,40 +15,52 @@ const SingleCocktail = () => {
 
     const fetchCocktailData = async () => {
         setLoading(true)
-        const response = await fetch(`${url}${id}`)
-        const data = await response.json();
-        console.log(data)
-        const {
-            strDrink: name,
-            strDrinkThumb: image,
-            strAlcoholic: info,
-            strCategory: category,
-            strGlass: glass,
-            strInstructions: instructions,
-            strIngredient1,
-            strIngredient2,
-            strIngredient3,
-            strIngredient4,
-            strIngredient5,
-        } = data.drinks[0]
-        const ingredients = [
-            strIngredient1,
-            strIngredient2,
-            strIngredient3,
-            strIngredient4,
-            strIngredient5,
-          ]
-        const newCocktail = {
-            name, 
-            image, 
-            info, 
-            category, 
-            glass, 
-            instructions,
-            ingredients, 
+
+        try {
+            const response = await fetch(`${url}${id}`)
+            const data = await response.json();
+            console.log(data)
+            if (data.drinks) {
+                const {
+                    strDrink: name,
+                    strDrinkThumb: image,
+                    strAlcoholic: info,
+                    strCategory: category,
+                    strGlass: glass,
+                    strInstructions: instructions,
+                    strIngredient1,
+                    strIngredient2,
+                    strIngredient3,
+                    strIngredient4,
+                    strIngredient5,
+                } = data.drinks[0]
+                const ingredients = [
+                    strIngredient1,
+                    strIngredient2,
+                    strIngredient3,
+                    strIngredient4,
+                    strIngredient5,
+                ]
+                const newCocktail = {
+                    name, 
+                    image, 
+                    info, 
+                    category, 
+                    glass, 
+                    instructions,
+                    ingredients, 
+                }
+                setCocktail(newCocktail)
+                setLoading(false)
+            } else {
+                setCocktail(null)
+            }
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
         }
-        setCocktail(newCocktail)
-        setLoading(false)
+
     }
 
     useEffect(() => {
@@ -60,6 +72,10 @@ const SingleCocktail = () => {
 
     if (loading) {
         return <Loading />
+    }
+
+    if (!cocktail) {
+        return <h2 className='section-title'>no cocktail to display</h2>
     }
 
     const {name, image, info, category, glass, instructions, ingredients} = cocktail
