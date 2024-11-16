@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
@@ -83,7 +83,10 @@ const SingleCocktail = () => {
     return ( 
         <>
         <section className="section cocktail-section">
-            <h2 className="section-title">name</h2>
+            <Link to='/' className='btn btn-primary'>
+            back home
+            </Link>
+            <h2 className="section-title">{name}</h2>
             <div className="drink">
                 <img src={image} alt={name} />
                 <div className="drink-info">
@@ -105,7 +108,7 @@ const SingleCocktail = () => {
             <p>
               <span className='drink-data'>ingredients :</span>
               {ingredients.map((item, index) => {
-                return item ? <span key={index}> {item}</span> : null
+                return item ? <span key={index}>{item}</span> : null
               })}
             </p>
                 </div>
